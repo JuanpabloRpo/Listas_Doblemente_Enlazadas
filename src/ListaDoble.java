@@ -89,7 +89,7 @@ public class ListaDoble {
     }
 
     //Metodo para mostrar la lista de fin a inicio
-    public void mostrarListaFinAinicio(){
+    public void mostrarListaFinAInicio(){
         if (!isEmpty()){
             NodoDoble recorrer=fin;
             System.out.print("[");
