@@ -10,7 +10,7 @@ public class ListaDoble {
         return inicio==null;
     }
 
-    //Metodo agregar nodos al final
+    //Metodo agregar nodos al inicio
     public void agregarAlInicio(int dato){
         if (!isEmpty()){
             inicio = new NodoDoble(dato,inicio,null);
@@ -20,7 +20,7 @@ public class ListaDoble {
         }
     }
 
-    //Metodo agregar nodos al inicio
+    //Metodo agregar nodos al final
     public void agregarAlFinal(int dato){
         if (!isEmpty()){
             fin = new NodoDoble(dato,null,fin);
@@ -29,35 +29,6 @@ public class ListaDoble {
             inicio=fin=new NodoDoble(dato);
         }
 
-    }
-
-    //Metodo para mostrar la lista de inicio a fin
-    public void mostrarListaInicioAFin(){
-        if (!isEmpty()){
-            NodoDoble recorrer=inicio;
-            System.out.print("[ ");
-            while (recorrer!=null){
-                System.out.print(recorrer.getDato()+" ");
-                recorrer=recorrer.getSiguiente();
-            }
-            System.out.print("]");
-        }
-    }
-
-    //Metodo para mostrar la lista de fin a inicio
-    public void mostrarListaFinAinicio(){
-        if (!isEmpty()){
-            NodoDoble recorrer=fin;
-            System.out.print("[");
-            while (recorrer!=null){
-                if (recorrer.getSiguiente()!=null){
-                    System.out.print(",");
-                }
-                System.out.print(recorrer.getDato());
-                recorrer=recorrer.getAnterior();
-            }
-            System.out.print("]");
-        }
     }
 
     //Metodo para remover un elemento al inicio de la lista
@@ -79,6 +50,64 @@ public class ListaDoble {
             fin.setSiguiente(null);
         }
     }
+
+    // Metodo para remover nodo
+    public void eliminar(int dato){
+        if (!isEmpty()){
+            NodoDoble recorrer=inicio;
+            NodoDoble Anterior=null;
+            while (recorrer!=null){
+                if (recorrer.getDato()==dato){
+                    if (recorrer==inicio){
+                        eliminarInicio();
+                    }else if(recorrer==fin){
+                        eliminarFin();
+                    }else {
+                        Anterior.setSiguiente(recorrer.getSiguiente());
+                        recorrer.getSiguiente().setAnterior(Anterior);
+                    }
+                }
+                Anterior=recorrer;
+                recorrer=recorrer.getSiguiente();
+            }
+        }
+
+    }
+
+    //Metodo para mostrar la lista de inicio a fin
+    public void mostrarListaInicioAFin(){
+        if (!isEmpty()){
+            NodoDoble recorrer=inicio;
+            System.out.print("[ ");
+            while (recorrer!=null){
+                System.out.print(recorrer.getDato()+" ");
+                recorrer=recorrer.getSiguiente();
+            }
+            System.out.print("]");
+        }
+        System.out.println();
+    }
+
+    //Metodo para mostrar la lista de fin a inicio
+    public void mostrarListaFinAinicio(){
+        if (!isEmpty()){
+            NodoDoble recorrer=fin;
+            System.out.print("[");
+            while (recorrer!=null){
+                if (recorrer.getSiguiente()!=null){
+                    System.out.print(",");
+                }
+                System.out.print(recorrer.getDato());
+                recorrer=recorrer.getAnterior();
+            }
+            System.out.print("]");
+        }
+        System.out.println();
+    }
+
+
+
+
 
 
 
